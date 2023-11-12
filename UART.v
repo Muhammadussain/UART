@@ -1,7 +1,3 @@
-// `include "Rx.v"
-// `include "Tx.v"
-// `include "boud.v"
-
 module UART (
     
     input wire clk,
