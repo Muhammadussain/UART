@@ -6,28 +6,19 @@ module UART (
     input wire [1:0] addr,
     input wire [7:0] wdata,
     input wire re,
-    output wire  rx_reg,
+    output reg [7:0] rxd,
     input wire we
 );
 wire tx;
 
-
+wire [7:0] rx_reg;
 reg [7:0] txd;
 reg [7:0] Br;
-reg [7:0] rxd;
 
 wire [7:0] tx_data;
 wire boud_in;
 wire  boud_tick;
 reg [7:0] rxout;
-
-always@(*)begin
-
-rxout=rx_reg;
-
-
-end
-
 
 always @(*) begin
     case (addr) 
@@ -44,7 +35,7 @@ always @(*) begin
         
     endcase
 end
-TX u_TX(
+tx_2 u_tx2(
     .clk(clk),
     .rst(rst),
     .en(en),
@@ -52,11 +43,11 @@ TX u_TX(
     .boud_in(boud_tick),
     .tx(tx)
     );
-rx u_rx(
+rx_2 u_rx_2(
     .clk(clk),
     .rst(rst),
     .en(en),
-    .data(tx),
+    .data_rx(tx),
     .rx_reg(rx_reg),
     .boud_in(boud_tick)
 
@@ -68,4 +59,5 @@ boud_rate u_boud_rate (
     .num(Br),
     .boud_tick(boud_tick)
 );
+
 endmodule
