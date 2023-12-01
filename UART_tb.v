@@ -4,7 +4,7 @@ module UART_tb ();
     reg rst;
     reg en;
     reg [1:0] addr;
-   // reg [7:0] num;
+
     reg [7:0] wdata;
     reg re;
     reg we;
@@ -19,21 +19,19 @@ UART u_UART (
     .addr(addr),
     .re(re),
     .we(we),
- //   .num(num),
+
     .wdata(wdata)
    
 );
 
 initial begin
     rst = 1'b1;
-   // num=8'd130;
+
    
     clk = 1'b1;
     en = 1'b1;
     we=1'b1;
-    // addr=10;
-    // wdata = 8'd130;
-   // Br=8'd130;
+
 
     re=1'b1;
     addr=2'b01;
@@ -47,7 +45,7 @@ initial begin
     #50;
     we=1'b1;
     addr=2'b00;
-    wdata = 8'b10101011;
+    wdata = 8'b11110000;
     #50;
       re=1'b1;
     addr=2'b01;
